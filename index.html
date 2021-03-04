@@ -71,6 +71,281 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-GUI学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/04/GUI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2021-03-04T13:53:08.000Z" itemprop="datePublished">2021-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/03/04/GUI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">GUI学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a><strong>窗口</strong></h2><blockquote>
+<p><strong>JFrame</strong> ：底层容器，可以向其中添加组件但是不可将JFrame添加到其他容器中</p>
+<blockquote>
+<p>JMenuBar：菜单条，菜单需要添加到菜单条中</p>
+<p>JMenu：菜单，将一个菜单添加到一个菜单中这个菜单就成为子菜单</p>
+<p>JMenuIten：菜单项，需要添加到菜单中</p>
+<p>Icon：图标，<code>Icon icon=new ImageIcon(&quot;图片名&quot;);菜单项.setIcon(icon);</code></p>
+<p>即可创建菜单图标</p>
+</blockquote>
+<p><strong>常用组件</strong></p>
+<blockquote>
+<p>JTextField:文本框</p>
+<p>JTextArea：文本区</p>
+<p>JButton：按钮</p>
+<p>JLabel：标签</p>
+<p>JChexBox：复选框</p>
+<p>JRadioButton：单选按钮</p>
+<p>JComboBox:下拉列表</p>
+<p>JPasswordField：密码框</p>
+</blockquote>
+<p><strong>常用容器</strong> </p>
+<blockquote>
+<p>JPanel:面板，通常创建面板将组件添加在面板上后将面板添加到其他容器中</p>
+<p>JTabbedPane：选项卡格窗</p>
+<p>JScrollPane：滚动格窗</p>
+<p>JSplitPane：拆分格窗<code>JSpiitPane(int a,Component b,Component c)</code>参数a取HORIZONTAL_SPLIT(水平拆分)或VERTICAL_SPLIT(垂直拆分)</p>
+<p>JLayeredPane：分层格窗</p>
+</blockquote>
+<p><strong>常用布局</strong></p>
+<blockquote>
+<p>FlowLayout：每一行的组件都居中排列，一行排满后排到下一行，按先添加的先后顺序从左到右排列</p>
+<p>BorderLayouot：划分为5各区域，上北下南左西右东中，中间的区域最大，每个区域只能放一个组件，如果此区域已经放置了一个组件在次添加组件则会替换掉原来的组件</p>
+<p>CardLayout：组件被层叠放入容器中，最先加入的在第一张，以此类推，与扑克牌相似一次只能抽一张出来显示，被显示的组件将占据整个容器空间</p>
+<p>GridLayout：网格布局，组件添加顺序为第一行第一个，第二个，……第n行最后一个</p>
+<p>null：空布局，自定义组件在容器中的位置</p>
+<p>BoxLayout：<code>static  createHorizontalBox()</code> 可获得一个行型盒式容器，<code>static createHorizontalStrut(int width)</code> 可创建一个水平支撑，使水平组件之间有距离</p>
+<p><code>static createVerticalBox()</code> 可获得一个列式容器<code>creaVerticalStrut(int height)</code> 可创建一个垂直支撑，使垂直组件之间有距离</p>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="处理事件"><a href="#处理事件" class="headerlink" title="处理事件"></a><strong>处理事件</strong></h2><blockquote>
+<p>**ActionEvent事件 ** ：文本框，按钮，菜单项，密码框，单选按钮可触发ActionEvent事件</p>
+<blockquote>
+<p>ActionListeren接口：</p>
+<blockquote>
+<p><code>public void actionPerformed(ActionEvent e)</code> 对事件做出处理</p>
+<p>ActionEvent事件对象调用<code>public Object getSource()</code> 可以获取发生此事件的事件源对象的引用</p>
+<p>ActionEvent事件对象调用<code>public String getActionCommand()</code> 可以获取发生此事件时和该事件相关的一个“命令”字符串，事件源对象可事先调用<code>setCommand(String s)</code> 改变封装到事件中的默认“命令”</p>
+</blockquote>
+</blockquote>
+<p><strong>ItemEvent事件</strong>：选择框，下拉列表，可触发ItemEvent事件</p>
+<blockquote>
+<p>ItemListener接口：</p>
+<blockquote>
+<p><code>public void itemStateChanged(ItemEvent e)</code> 对事件做出处理</p>
+<p>ItemEvent事件对象调用<code>getSource()</code> 或<code> getItemSelectable()</code> 返回事件源对象</p>
+</blockquote>
+</blockquote>
+<p><strong>DocumentEvent事件</strong>：文本区中的文本进行编辑操作使文本数据发生改变即出发DocumentEvent事件</p>
+<blockquote>
+<p>DocumentListener接口：</p>
+<blockquote>
+<p><code>public void changeUpdate(DocumentEvent e)</code> 用于处理文本内容被改变事件</p>
+<p><code>public void removeUpdate(DocumentEvent e)</code> 用于处理文本内容被移除事件</p>
+<p><code>public void insertUpdate(DocumentEvent e)</code> 用于处理插入文本内容事件</p>
+</blockquote>
+</blockquote>
+<p><strong>MouseEvent事件</strong>：鼠标进入组件、退出组件、在组件上单击鼠标、拖动鼠标都可以触发MouseEvent事件</p>
+<blockquote>
+<p>MouseEvent类重要方法：</p>
+<blockquote>
+<p><code>getX()</code> 获取鼠标指针在事件源坐标系中的X坐标</p>
+<p><code>getY()</code> 获取鼠标指针在事件源坐标系中的Y坐标</p>
+<p><code>getModifiers()</code> 获取鼠标的左键或右键，左右键分别用InputEvent中的常量<code>BUTTON1_MASK</code> 和<code>BUTTON3_MASK</code> 来表示</p>
+<p><code>getClickCount()</code> 获取鼠标被单击的次数</p>
+<p><code>getSource</code> 获取发生鼠标事件的事件源</p>
+</blockquote>
+<p>MouseListener接口：</p>
+<blockquote>
+<p><code>mousePressed(MouseEvent e)</code> 处理在组件上按下鼠标键触发的事件</p>
+<p><code>mouseReleased(MouseEvent e)</code> 处理在组件上释放鼠标键触发的事件</p>
+<p><code>mouseEntered(MouseEvent e)</code> 处理鼠标进入组件时触发的事件</p>
+<p><code>mouseExited(MouseEvent e)</code> 处理鼠标退出组件时触发的事件</p>
+<p><code>mouseClicked(MouseEvent e)</code> 处理鼠标在组件上单击时触发的事件</p>
+</blockquote>
+<p>MouseMotionListener接口：</p>
+<blockquote>
+<p><code>mouseDragged(MouseEvent e)</code> 处理拖动鼠标时（不必在事件源上）发生的事件</p>
+<p><code>mouseMoved(MouseEvent e)</code> 处理在事件源上移动鼠标时发生的事件</p>
+</blockquote>
+</blockquote>
+<p><strong>焦点事件</strong>:组件从无输入焦点变成有输入焦点或从有输入焦点变成无输入焦点都可以触发FocusEvent事件</p>
+<blockquote>
+<p>FocusListener接口：</p>
+<blockquote>
+<p><code>focusGained(FocusEvent e)</code> 处理从无输入焦点变成有输入焦点触发的焦点事件</p>
+<p><code>focusLost(FocusEvent e)</code> 处理从有输入焦点变成无输入焦点触发的焦点事件</p>
+<p>可以单击组件使其有输入焦点，同时使得其他组件变成无输入焦点，一个组件也可调用<code>public boolean requestFocussInWindow()</code> 获得输入焦点</p>
+</blockquote>
+</blockquote>
+<p><strong>键盘事件</strong>：按下、释放或敲击键盘上的一个键时就触发了键盘事件</p>
+<blockquote>
+<p>KeyEvent类重要方法：</p>
+<blockquote>
+<p><code>public int getKeyCode()</code> 判断哪个键被按下、释放、敲击,返回一个键码值</p>
+<p><code>public char getKeyChar()</code> 判断哪一个键被按下、释放、敲击，返回键上的字符</p>
+</blockquote>
+<p>KeyLisener接口：</p>
+<blockquote>
+<p><code>public void keyPressed(KeyEvent e)</code> 处理按下键盘键时触发的键盘事件</p>
+<p><code>public void keyTyped(KeyEvent e)</code> 处理敲击键盘键时触发的键盘事件</p>
+<p><code>public void keyReleased(KeyEvent e)</code> 处理shif键盘键时触发的键盘事件</p>
+</blockquote>
+</blockquote>
+<p><strong>窗口事件</strong>：当一个窗口被激活、撤销激活、打开、关闭、图标化、撤销图标化时，就触发了窗口事件(若准备处理窗口事件就必须保证窗口的默认关闭方式为DO_NOTHING_ON_CLOSE）    </p>
+<blockquote>
+<p>WindowListener接口：</p>
+<blockquote>
+<p><code>public void windowActivated(WindowEvent e)</code> 窗口从非激活到激活时调用此方法</p>
+<p><code>public void windowDeactivated(WindowEvent e)</code> 窗口从激活到非激活时调用此方法</p>
+<p><code>public void windowClosing(WindowEvent e)</code> 窗口正在被关闭时调用此方法</p>
+<p><code>public void windowClosed(WindowEvent e)</code> 窗口关闭后调用此方法</p>
+<p><code>public void windowIconified(windowEvent e)</code> 窗口图标化时调用此方法</p>
+<p><code>public void windowDeiconified(WindowEvent e)</code> 窗口撤销图标化时，调用此方法</p>
+<p><code>public void windowOpened(WindowEvent e)</code> 窗口打开时调用此方法</p>
+</blockquote>
+<p>WindowAdapter适配器：</p>
+<blockquote>
+<p>WindowAdapter类实现了WindowListener接口，可以用WindowAdapter的子类创建对象做监视器，在子类中重写所需的接口方法</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="对话框（JDialog）"><a href="#对话框（JDialog）" class="headerlink" title="对话框（JDialog）"></a><strong>对话框（JDialog）</strong></h2><blockquote>
+<p><strong>消息对话框</strong>：(javax.swing包中，消息对话框为有模式对话框）</p>
+<blockquote>
+<p>JOptionPane类静态方法<code>showMessageDialog</code> 可得到一个消息对话框</p>
+<p><code>public static void showMessageDialog(Component parentCompont,String message,String title,int messageType)</code> messageType取JOptionPane中的类常量：<code>INFORMATION_MESSAGE</code>    <code>WARNING_MESSAGE</code>    <code>ERROR_MESSAGE</code>    <code>QUESTION_MESSAGE</code>    <code>PLAIN_MESSAGE</code> </p>
+</blockquote>
+<p><strong>输入对话框</strong>：（输入对话框是有模式对话框）</p>
+<blockquote>
+<p>JOptionPane类静态方法<code>showInputDialog</code> 可得到一个确认对话框</p>
+<p><code>public static void showInoutDialog(Component parentComponent,Object message,String title,int messType)</code> </p>
+<p>messTypew为JoptionPane中的类常量：<code>INFORMATION_MESSAGE</code>    <code>WARNING_MESSAGE</code>    <code>ERROR_MESSAGE</code>    <code>QUESTION_MESSAGE</code>    <code>PLAIN_MESSAGE</code> </p>
+<p>单击输入对话框的确认按钮，对话框返回文本框中的字符串否则返回null</p>
+</blockquote>
+<p><strong>确认对话框</strong>：（确认对话框是有模式对话框）</p>
+<blockquote>
+<p>JOptionPane类静态方法<code>showConfirmDialog</code>可得到一个确认对话框</p>
+<p><code>public static int showConfirmDialog(Component parentComponent,Object message,String title,int optionType)</code></p>
+<p>messType可取JoptionPane中的类常量：<code>YES_NO_OPTION</code> <code>YES_NO_CANCEL_OPTION</code> <code>OK_CANCEL_OPTION</code> </p>
+<p>当对话框被关闭后showConfirmDialog会返回下列整数值之一：<code>JOptionPane.YES_OPTION</code> ,<code>JOptionPane.NO_OPTION</code> ,<code>JOptionPane.CANCEL_OPTION</code> ,<code> JOptionPane.OK_OPTION</code> ,<code>JOptionPane.CLOSE_OPTION </code> </p>
+</blockquote>
+<p><strong>颜色对话框</strong>：</p>
+<blockquote>
+<p>javax.swing包中的JColorChooser类的静态方法<code>public static Color showDialog(Component component,String title,Color initialColor)</code> 创建一个有模式的颜色对话框，选择颜色后单击确认按钮<code>showDialog（）</code>返回所选择的颜色对象，否则返回空</p>
+</blockquote>
+<p><strong>自定义对话框</strong>：</p>
+<blockquote>
+<ul>
+<li><p>可以通过建议JDialog的子类来建立一个对话框类，这个类的实例就是一个对话框</p>
+</li>
+<li><p>默认布局：borderLayout</p>
+</li>
+<li><p>对话框可见时，默认被添加到显示器屏幕上，不可添加到另一个容器中</p>
+<p>常用构造方法：1. JDialog（）</p>
+<p>2.JDialog（JFrame owner）</p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="树组件（JTree）"><a href="#树组件（JTree）" class="headerlink" title="树组件（JTree）"></a><strong>树组件（JTree）</strong></h2><blockquote>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><ul>
+<li>任何实现MutableTreeNode接口的类创建的对象都可以成为树上的结点</li>
+<li>可使用javax.swing.tree包提供的DefaultMutableTreeNode类创建树上的结点</li>
+</ul>
+<blockquote>
+<p>DefauleMutableNode类常用构造方法：<code>DefaultMutableNode(Object userObject)</code> <code>DefaultMutableNode(Object userObject,boolean allowChildren)</code> </p>
+<p>结点调用<code>getUserObject()</code>可得到节点中存放的对象</p>
+<p><code>setAllowChildren(boolean b)</code> 可设置是否允许有子结点</p>
+</blockquote>
+<ul>
+<li>创建好结点并规定好父子关系后用JTree的构造方法<code>JTree(TreeNode root)</code>创建根节点为root的树组件</li>
+</ul>
+<h3 id="TreeSelectionEvent事件"><a href="#TreeSelectionEvent事件" class="headerlink" title="TreeSelectionEvent事件"></a>TreeSelectionEvent事件</h3><ul>
+<li>鼠标单击树上的结点触发TreeSelectionEvent事件</li>
+<li>TreeSelectionListener接口：</li>
+</ul>
+<blockquote>
+<p><code>public void valueChanged(TreeSelectionEvent e)</code> </p>
+<p><code>getLastSelectedComponent()</code> 树调用此方法可获取选中的结点</p>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="表格组件（JTable）："><a href="#表格组件（JTable）：" class="headerlink" title="表格组件（JTable）："></a><strong>表格组件（JTable）</strong>：</h2><blockquote>
+<ul>
+<li>常用构造方法：</li>
+</ul>
+<blockquote>
+<p>JTable()创建默认的表格模型</p>
+<p>JTable（int a，int b）创建a行b列的默认模型表格</p>
+<p>JTable（Object date[][],Object columnName[])创建默认表格模型对象，列名由columnName指定</p>
+</blockquote>
+<ul>
+<li>在表格中编辑数据后需要按回车或用鼠标单击表格的单元格确定所编辑的结果</li>
+<li>当表格需要刷新显示时让表格调用<code>repaint()</code>方法</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="按钮绑定到键盘："><a href="#按钮绑定到键盘：" class="headerlink" title="按钮绑定到键盘："></a>按钮绑定到键盘：</h2><blockquote>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">InputMap inputmap=button.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);</span><br><span class="line">inputmap.put(KeyStroke.getKeyStroke(<span class="string">&quot;A&quot;</span>),<span class="string">&quot;dog&quot;</span>);</span><br><span class="line">ActionMap actionmap=button.getActionMap();</span><br><span class="line">Police listener=<span class="keyword">new</span> Police();</span><br><span class="line">actionmap.put(<span class="string">&quot;dog&quot;</span>,listener);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Police</span> <span class="keyword">extends</span> <span class="title">AbstractAction</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h2 id="打印组件"><a href="#打印组件" class="headerlink" title="打印组件"></a>打印组件</h2><blockquote>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PrintJob p=getToolkit().getPrintJob(JFrame f,String s,<span class="keyword">null</span>);</span><br><span class="line">Graphics g=p.getGraphics();<span class="comment">//p获取一个用于打印的Graphics对象</span></span><br><span class="line">g.translate(<span class="keyword">int</span> x,<span class="keyword">int</span> y);<span class="comment">//在打印页的(x，y)坐标处开始打印组件</span></span><br><span class="line">button.printAll(g);<span class="comment">//打印当前按钮</span></span><br><span class="line">g.disopose();<span class="comment">//释放对象g</span></span><br><span class="line">p.end();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h2 id="发布GUI程序"><a href="#发布GUI程序" class="headerlink" title="发布GUI程序"></a>发布GUI程序</h2><blockquote>
+<p>一、用文本编辑器写一个清单文件</p>
+<blockquote>
+<p>例如：</p>
+<p>Mymoon.mf:</p>
+<p>Manifest-Version: 1.0</p>
+<p>Main-Class: A</p>
+<p>Created-By: 1.6</p>
+</blockquote>
+<p>二、生成JAR文件</p>
+<p><code>D:\test&gt; jar cfm Tom.jar Mymoon.mf A.class B.class</code> </p>
+<p>test为清单文件与程序所需字节码所在的文件夹</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/04/GUI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckluxk8d50001j4yl4rmigbkp" data-title="GUI学习笔记" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-多线程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/02/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="article-date">
@@ -165,7 +440,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-id="ckls4m8480003h8yladye14fh" data-title="多线程" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2021/02/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-id="ckluxk8d80003j4yl8e9v8z86" data-title="多线程" class="article-share-link">Teilen</a>
       
       
       
@@ -316,7 +591,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/19/Java%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81/" data-id="ckls4m83z0000h8yl3qpd1snr" data-title="Java输入输出流" class="article-share-link">Teilen</a>
+      <a data-url="http://example.com/2021/02/19/Java%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81/" data-id="ckluxk8cz0000j4yl17gyaahr" data-title="Java输入输出流" class="article-share-link">Teilen</a>
       
       
       
@@ -362,7 +637,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archiv</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li></ul>
     </div>
   </div>
 
@@ -373,6 +648,10 @@
     <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/03/04/GUI%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">GUI学习笔记</a>
+          </li>
         
           <li>
             <a href="/2021/02/25/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
